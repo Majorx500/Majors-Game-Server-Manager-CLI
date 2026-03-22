@@ -29,13 +29,17 @@ if [[ $GAME = "PaperMC" ]]; then
   )
 fi
 
+exit_status=$?
+
+if [[ exit_status -ne 0 ]]; then
+  echo "Cancelled Creating Server"
+  exit
+fi
+
 GAME_DIR=$(
   whiptail --title "Game Server Settings" --backtitle "Major's Game Server Manager" --inputbox "Choose gameserver directory(default= ~/servers/$GAME server" 20 78 "$($HOME/servers/${GAME}server)" 3>&1 1>&2 2>&3
 )
 
 if [[ $GAME_DIR = "" ]]; then
   GAME_DIR="$HOME/servers/${GAME,,}""server"
-
 fi
-
-echo "$GAME $GAME_VER $GAME_DIR"
