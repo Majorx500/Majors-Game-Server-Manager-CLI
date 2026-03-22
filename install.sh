@@ -7,16 +7,6 @@ GAME_VER=""
 
 
 
-whiptail --title "Menu example" --menu "Choose an option" 25 78 16 \
-  
-  > OPTION
-
-echo "$OPTION"
-
-case $OPTION in
-  ""
-esac
-
 whiptail --title "Choose Game Server" --backtitle "Major's Game Server Manager" --radiolist \
   "Choose user's permissions" 20 78 4 \
   "NET_OUTBOUND" "Allow connections to other hosts" ON \

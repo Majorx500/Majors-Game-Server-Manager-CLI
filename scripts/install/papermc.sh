@@ -6,7 +6,7 @@ GAME_URL=$(curl -X 'GET' \
   "https://fill.papermc.io/v3/projects/paper/versions/$1/builds/latest" \
   -H 'accept: application/json' | jq -r '.downloads."server:default".url')
 
-mkdir "$2/serverfiles"
+mkdir -p "$2/serverfiles"
 
 cd "$2" || exit
 
@@ -22,6 +22,7 @@ fi
 
 echo "Installing server"
 
-echo "stop" | java -jar "./serverfiles/papermc.jar" --nogui 1>/dev/null 2>/dev/null
-
+cd "./serverfiles"
+echo "stop" | java -jar "papermc.jar" --nogui 1>/dev/null 2>/dev/null
+cd ".."
 echo "Server created"
