@@ -2,6 +2,8 @@
 
 # $1 -- gameversion $2 -- gamedir
 
+BASE_DIR=$(realpath $(dirname $(realpath $0))/..)
+
 GAME_URL=$(curl -X 'GET' \
   "https://fill.papermc.io/v3/projects/paper/versions/$1/builds/latest" \
   -H 'accept: application/json' | jq -r '.downloads."server:default".url')
@@ -24,4 +26,6 @@ echo "Installing server"
 echo "stop" | java -jar "papermc.jar" --nogui 1>/dev/null 2>/dev/null
 echo "Server created"
 
-cp ../servers/papermcserver "$2"
+cp "$BASE_DIR/servers/papermcserver" "$2"
+mkdir -p "$2/mgsm"
+cp -r "$BASE_DIR/server_actions/papermc/*" "$2/mgsm/scripts/server_actions/"

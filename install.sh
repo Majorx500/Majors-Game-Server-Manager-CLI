@@ -43,4 +43,8 @@ GAME_DIR=$(
     3>&1 1>&2 2>&3
 )
 
-echo "$GAME_DIR"
+case $GAME in
+"PaperMC")
+  ./mgsm/scripts/install/papermc.sh $GAME_VER $GAME_DIR
+  ;;
+esac
